@@ -142,3 +142,41 @@ video {
 	width: 65%;
 	border: thin solid #949393;
 }
+
+/* This code is taken straight from the online lesson I used to make the custom controls. If I was better with CSS and had a bit more time, I would have adjusted it more.*/
+.playerButtonToggle {
+  background: none;
+  border: 0;
+  line-height: 1;
+  color: white;
+  text-align: center;
+  outline: 0;
+  padding: 0;
+  cursor: pointer;
+  max-width: 50px;
+  font-size: 30px;
+}
+
+.progress {
+  flex: 10;
+  position: relative;
+  display: flex;
+  flex-basis: 100%;
+  height: 5px;
+  transition: height 0.3s;
+  background: rgba(0,0,0,0.5);
+  cursor: ew-resize;
+}
+
+.progressFilled {
+  width: 50%;
+  background: #8a8c84;
+  flex: 0;
+  flex-basis: 50%;
+}
+
+.playerButton {
+	background: none;
+	color: white;
+	border: 0;
+}

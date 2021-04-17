@@ -7,7 +7,14 @@
         lightBox = document.querySelector(".lightbox"),
         vid = lightBox.querySelector('video'),
         houseName = document.querySelector('h1'),
-        houseDescription = document.querySelector('.house-info');
+        houseDescription = document.querySelector('.house-info'),
+        player = document.querySelector('.player'),
+        video = player.querySelector('.playerVideoViewer'),
+        progress = player.querySelector('.progress'),
+        progressBar = player.querySelector('.progressFilled'),
+        toggle = player.querySelector('.playerButtonToggle'),
+        skipButtons = player.querySelectorAll ('[data-skip]'),
+        ranges = player.querySelectorAll('.playerSlider');
 
   // adding house info using arrays -> this is what you would do for FIP as well
   const houseInfo = [
@@ -82,11 +89,64 @@
 
       lightBox.querySelector('.close').addEventListener('click', () => {
         stopVideo();
+
         lightBox.classList.remove('show-lightbox');
       })
     }
   }
 
+  var trailer = document.getElementById("myVideo");
+      trailer.onended = function() {
+      lightbox.classList.remove('show-lightbox')
+    };
+
+  function togglePlay() {
+    //debugger;
+    const method = video.paused ? 'play' : 'pause';
+    video[method]();
+  }
+
+  function updateButton() {
+    const icon = this.paused ? '▶' : '◼';
+    console.log('update the button');
+    toggle.textContent = icon;
+  }
+
+  function skip() {
+    console.log(this.dataset.skip);
+    video.currentTime += parseFloat(this.dataset.skip);
+  }
+
+  function handleRangeUpdate() {
+    video[this.name] = this.value
+   
+  }
+
+  function handleProgress() {
+    const percent = (video.currentTime / video.duration) * 100;
+    progressBar.style.flexBasis = `${percent}%`;
+  }
+
+  function scrub(e) {
+    const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
+    video.currentTime = scrubTime;
+  }
+
   sigils.addEventListener('click', animateBanner);
   sigils.addEventListener('click', popLightBox);
+
+  video.addEventListener('click', togglePlay);
+  video.addEventListener('play', updateButton);
+  video.addEventListener('pause', updateButton);
+  video.addEventListener('timeupdate', handleProgress);
+
+
+  toggle.addEventListener('click', togglePlay);
+  skipButtons.forEach(button => button.addEventListener('click', skip))
+  ranges.forEach(range => range.addEventListener('mousemove', handleRangeUpdate));
+
+  progress.addEventListener('click', scrub);
+  progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
+  progress.addEventListener('mousedown', () => mousedown = true);
+  progress.addEventListener('mouseup', () => mousedown = false);
 })();
