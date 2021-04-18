@@ -95,10 +95,7 @@
     }
   }
 
-  var trailer = document.getElementById("myVideo");
-      trailer.onended = function() {
-      lightbox.classList.remove('show-lightbox')
-    };
+
 
   function togglePlay() {
     //debugger;
@@ -145,6 +142,7 @@
   skipButtons.forEach(button => button.addEventListener('click', skip))
   ranges.forEach(range => range.addEventListener('mousemove', handleRangeUpdate));
 
+  let mousedown = false;
   progress.addEventListener('click', scrub);
   progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
   progress.addEventListener('mousedown', () => mousedown = true);
