@@ -17,6 +17,9 @@
     		<img src="images/tully.jpg"/>
     		<img src="images/greyjoy.jpg"/>
     		<img src="images/arryn.jpg"/>
+            <img src="images/targaryen.jpg"/>
+            <img src="images/frey.jpg"/>
+            <img src="images/tyrell.jpg"/>
         </div>
     </section>
 
@@ -24,13 +27,15 @@
     	<ul id="navList">
         	<!-- custom data attribute, allowing to pass custom data https://developer.mozilla.org/en/docs/Web/API/HTMLElement/dataset -->
             <li>
-              <div class="sigilContainer stark" data-offset="0"></div>
-            </li>
+              <div class="sigilContainer stark" data-offset="0"></div></li>
             <li><div class="sigilContainer baratheon" data-offset="1"></div></li>
             <li><div class="sigilContainer lannister" data-offset="2"></div></li>
             <li><div class="sigilContainer tully" data-offset="3"></div></li>
             <li><div class="sigilContainer greyjoy" data-offset="4"></div></li>
             <li><div class="sigilContainer arryn" data-offset="5"></div></li>
+            <li><div class="sigilContainer targaryen" data-offset="6"></div></li>
+            <li><div class="sigilContainer frey" data-offset="7"></div></li>
+            <li><div class="sigilContainer tyrell" data-offset="8"></div></li>
         </ul>
     </nav>
 
@@ -41,11 +46,49 @@
     <!-- lightbox goes here -->
     <section class="lightbox">
       <a href="#" class="close">X</a>
-      <video src="video/House-Stark.mp4" controls></video>
+
+      <div class="videoControlsHidden" id="videoControls">
+
+        <!--<video src="video/House-Stark.mp4" controls></video>
+        <video src="video/House-Baratheon" controls></video>
+        <video src="video/House-Lannister" controls></video>
+        <video src="video/House-Tully" controls></video>
+        <video src="video/House-Greyjoy" controls></video>
+        <video src="video/House-Arryn" controls></video>
+        <video src="video/House-Targaryen" controls></video>
+        <video src="video/House-Frey" controls></video>
+        <video src="video/House-Tyrell" controls></video>-->
+      </div>
+
+      <div class="player">
+        <video class="playerVideoViewer" src="video/House-Stark.mp4"></video>
+
+        <div class="playerControls">
+            <div class="progress">
+                <div class="progressFilled"></div>
+            </div>
+            <button class="playerButtonToggle" title="Toggle Play">&#9658;</button>
+            <input type="range" name="playbackRate" class="playerSlider" min="0.5" max="2" step="0.1" value="1">
+            <input type="range" name="volume" class="playerSlider" min='0' max="1" step="0.05" value="1">
+
+            <button data-skip="-10" class="playerButton"><< 10s</button>
+            <button data-skip="25" class="playerButton">25s >></button>
+        </div>
+    </div>
     </section>
+
+    <div class="videoControlsHidden" id="videoControls">
+
     <!-- end lightbox -->
 </main>
 
 <script src="js/main.js"></script>
 </body>
 </html>
+
+
+<!-- - Add the last few houses with their sigils and videos (check out GOT_assets)
+- Make the banner animate before the video pops up
+- Make your own custom video controls: have at minimum a pause, play, rewind and volume button
+- Make the lightbox close by itself when the video ends
+- Submission note: don’t need to submit the mp4 files, use a gitignore -->
